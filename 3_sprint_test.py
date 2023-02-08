@@ -230,3 +230,19 @@ FOREIGN KEY(ice_cream_id) REFERENCES ice_cream(id)
 
 con.commit()
 con.close()
+
+# Добавление новых столбцов в таблице
+import sqlite3
+
+con = sqlite3.connect('db.sqlite')
+cur = con.cursor()
+
+cur.executescript('''
+ALTER TABLE ice_cream
+ADD COLUMN is_published INTEGER;
+ALTER TABLE ice_cream
+ADD COLUMN is_on_main INTEGER;
+''')
+
+con.commit()
+con.close()
